@@ -50,5 +50,14 @@ class AuthController extends GetxController {
     }
     _isinitialized.value = true;
     }
+    Future<void> SignInWithEmailAndPaswword(String email, String password) async{
+    try{
+      _isloading.value = true;
+      _error.value ='';
 
+    }catch(e){
+
+    }
+
+    }
   }
