@@ -3,6 +3,8 @@ import 'package:chattingapp/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controllers/auth_controller.dart';
+
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -30,19 +32,19 @@ class _SplashViewState extends State<SplashView>  with SingleTickerProviderState
     );
     _animationController.forward();
 
-    // _checkAuthAndNavigate();
+    _checkAuthAndNavigate();
     //   will implement check if logged in auth controller
   }
-  //   void  _checkAuthAndNavigate() async{
-  //     await Future.delayed(Duration(seconds: 2));
-  //     final authController = Get.put(AuthController(), permanent: true);
-  //     await Future.delayed(Duration(milliseconds: 800));
-  //     if(authController.isAuthenticated) {
-  //       Get.offAllNamed(AppRoutes.login);
-  //     }else{
-  //       Get.offAllNamed(AppRoutes.login);
-  //   }
-  // }
+    void  _checkAuthAndNavigate() async{
+      await Future.delayed(Duration(seconds: 2));
+      final authController = Get.put(AuthController(), permanent: true);
+      await Future.delayed(Duration(milliseconds: 800));
+      if(authController.isAuthenticated) {
+        Get.offAllNamed(AppRoutes.login);
+      }else{
+        Get.offAllNamed(AppRoutes.login);
+    }
+  }
   @override
   void dispose() {
     // TODO: implement dispose

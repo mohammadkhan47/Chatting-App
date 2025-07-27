@@ -1,13 +1,15 @@
 import 'package:chattingapp/routes/app_routes.dart';
 import 'package:get/get.dart';
 
+import '../views/auth/pages/login_view.dart';
 import '../views/auth/pages/splash_view.dart';
 
 class AppPages {
   static const initial = AppRoutes.splash;
 
   static final routes = [
-    GetPage(name: AppRoutes.splash, page: ()=> const SplashView(),
+    GetPage(name: AppRoutes.splash, page: ()=> const SplashView()),
+    GetPage(name: AppRoutes.login, page: ()=> const LoginView()),
  //      binding: BindingsBuilder(() {
  //        Get.put(SplashController());
  //      }),
@@ -73,6 +75,6 @@ class AppPages {
  //      binding: BindingsBuilder((){
  //        Get.put(NotificationsController());
  //      })
-    ),
+ //    ),
   ];
 }
