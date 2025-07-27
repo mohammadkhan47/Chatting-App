@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:chattingapp/models/user_model.dart';
 import 'package:chattingapp/routes/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -50,14 +52,67 @@ class AuthController extends GetxController {
     }
     _isinitialized.value = true;
     }
-    Future<void> SignInWithEmailAndPaswword(String email, String password) async{
-    try{
-      _isloading.value = true;
-      _error.value ='';
+    Future<void> SignInWithEmailAndPaswword(String email, String password) async {
+      try {
+        _isloading.value = true;
+        _error.value = '';
 
-    }catch(e){
-
-    }
+        UserModel? userModel = await _authService.signInWithEmailAndPassword(
+            email, password);
+        if (userModel != null) {
+          _usermodel.value = userModel;
+          Get.offAllNamed(AppRoutes.main);
+        }
+      } catch (e) {
+        _error.value = e.toString();
+        Get.snackbar('error', 'failed to login');
+        print(e);
+      }
+    finally{
+      _isloading.value = false;
 
     }
   }
+  Future<void> registerWithEmailAndPaswword(String email, String password, String displayName) async {
+    try {
+      _isloading.value = true;
+      _error.value = '';
+
+      UserModel? userModel = await _authService.registerWithEmailAndPassword(
+          email, password, displayName);
+      if (userModel != null) {
+        _usermodel.value = userModel;
+        Get.offAllNamed(AppRoutes.main);
+      }
+    } catch (e) {
+      _error.value = e.toString();
+      Get.snackbar('error', 'failed to create account');
+      print(e);
+    }
+    finally{
+      _isloading.value = false;
+    }
+  }
+  Future<void> signOut() async{
+    try{
+      _error.value = e.toString();
+      Get.snackbar('error', 'failed to sign out');
+    }finally{
+      _isloading.value=false;
+    }
+  }
+  Future<void> deleteAccount() async{
+    try{
+      _isloading.value =true;
+      await _authService.deleteAccount();
+      _usermodel.value= null;
+      Get.offAllNamed(AppRoutes.login);
+    }catch(e){
+      _error.value = e.toString();
+      Get.snackbar('error', 'failed to delete Account');
+    }
+  }
+  void clearError() {
+    _error.value= '';
+  }
+}
