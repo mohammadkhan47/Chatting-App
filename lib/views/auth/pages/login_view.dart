@@ -1,4 +1,5 @@
 import 'package:chattingapp/controllers/auth_controller.dart';
+import 'package:chattingapp/routes/app_routes.dart';
 import 'package:chattingapp/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -76,7 +77,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 15,),
                 TextFormField(
                     controller: _passController,
-                    obscureText: true,
+                    obscureText: _obscurepass,
                     decoration: InputDecoration(
                       labelText: "Password",
                       prefixIcon: Icon(Icons.lock_outline),
@@ -97,6 +98,71 @@ class _LoginViewState extends State<LoginView> {
                       return null;
                     }
                 ),
+                SizedBox(height: 24,),
+                Obx(
+                    ()=>SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(onPressed: _authController.isLoading ? null: (){
+                        if(_formKey.currentState?.validate() ?? false){
+                          _authController.SignInWithEmailAndPaswword(_emailController.text.trim(), _passController.text.trim()
+                          );
+                        }
+                      },
+                          child: _authController.isLoading ? SizedBox(height: 20,width: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 4,
+                            ),
+                          )
+                              :Text('Sign In'),
+                      ),
+                    )
+                ),
+                SizedBox(height: 17,),
+                Center(
+                  child: TextButton(onPressed: (){
+                    Get.toNamed(AppRoutes.forgotPassword);
+                  },
+                      child: Text('Forgot Password',
+                        style: TextStyle(color: AppTheme.primaryColor),
+                      )),
+                ),
+                SizedBox(height: 34,),
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(child: Divider(
+                          color: AppTheme.borderColor,)),
+                        Padding(padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text('OR',
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ),
+                        Expanded(child: Divider(
+                          color: AppTheme.borderColor,)),
+                        SizedBox(height: 34),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Don't have an account?",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        GestureDetector(
+                          onTap: ()=> Get.toNamed(AppRoutes.register),
+                          child: Text('Sign Up',
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith
+                              (color: AppTheme.primaryColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                )
               ],
             ),
           ),

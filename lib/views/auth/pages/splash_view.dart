@@ -97,7 +97,7 @@ class _SplashViewState extends State<SplashView>  with SingleTickerProviderState
                   CircularProgressIndicator(
                     color: Colors.white,
                     strokeWidth: 4,
-                  )
+                  ),
                 ],
               ),
             ),

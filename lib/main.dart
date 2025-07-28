@@ -1,6 +1,5 @@
 import 'package:chattingapp/routes/app_pages.dart';
 import 'package:chattingapp/theme/app_theme.dart';
-import 'package:chattingapp/views/auth/pages/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -29,3 +28,17 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+
+// this is for change branch from master to main rebase--
+// git branch -d master
+// # On GitHub (or use command)
+// git push origin --delete master
+// git checkout main
+// # Step 2: Merge work from master into main
+// git merge master
+//
+// # Step 3: Push main to GitHub
+// git push origin main
