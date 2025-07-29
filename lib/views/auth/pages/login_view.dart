@@ -68,7 +68,7 @@ class _LoginViewState extends State<LoginView> {
                   validator: (value){
                     if(value?.isEmpty ?? true){
                       return 'please enter your email';
-                    }if(GetUtils.isEmail(value!)){
+                    }if(!GetUtils.isEmail(value!)){
                       return 'enter a valid email';
                     }
                     return null;

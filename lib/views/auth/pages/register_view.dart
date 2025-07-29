@@ -63,10 +63,10 @@ class _RegisterViewState extends State<RegisterView> {
                       .bodyMedium
                       ?.copyWith(color: AppTheme.textSecondaryColor),
                 ),
-                SizedBox(height: 43),
+                SizedBox(height: 48),
                 TextFormField(
                     controller: _displayNameController,
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       labelText: "Username",
                       prefixIcon: Icon(Icons.person_rounded),
@@ -76,13 +76,13 @@ class _RegisterViewState extends State<RegisterView> {
                       if (value?.isEmpty ?? true) {
                         return 'please enter your username';
                       }
-                      if (GetUtils.isEmail(value!)) {
+                      if (!GetUtils.isUsername(value!)) {
                         return 'enter a valid username';
                       }
                       return null;
                     }
                 ),
-                SizedBox(height: 15,),
+                SizedBox(height: 30,),
                 TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -95,13 +95,13 @@ class _RegisterViewState extends State<RegisterView> {
                       if (value?.isEmpty ?? true) {
                         return 'please enter your email';
                       }
-                      if (GetUtils.isEmail(value!)) {
+                      if (!GetUtils.isEmail(value!)) {
                         return 'enter a valid email';
                       }
                       return null;
                     }
                 ),
-                SizedBox(height: 15,),
+                SizedBox(height: 30,),
                 TextFormField(
                     controller: _passController,
                     obscureText: _obscurepass,
@@ -128,7 +128,7 @@ class _RegisterViewState extends State<RegisterView> {
                       return null;
                     }
                 ),
-                SizedBox(height: 12,),
+                SizedBox(height: 30),
                 TextFormField(
                     controller: _confirmpassController,
                     obscureText: _obscureconfirmpass,
@@ -190,10 +190,7 @@ class _RegisterViewState extends State<RegisterView> {
                           color: AppTheme.borderColor,)),
                         Padding(padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text('OR',
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .bodySmall,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),
                         SizedBox(height: 15,),
@@ -201,7 +198,6 @@ class _RegisterViewState extends State<RegisterView> {
                           color: AppTheme.borderColor,),
                         ),
                         SizedBox(height: 15,),
-
                       ],
                     ),
                     SizedBox(height: 15),
@@ -209,21 +205,14 @@ class _RegisterViewState extends State<RegisterView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("already have an account",
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .bodyMedium,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         SizedBox(height: 12),
                         GestureDetector(
                           onTap: () => Get.toNamed(AppRoutes.login),
                           child: Text('Sign In',
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith
-                              (color: AppTheme.primaryColor,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: AppTheme.primaryColor,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),

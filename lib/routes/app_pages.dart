@@ -1,6 +1,7 @@
 import 'package:chattingapp/routes/app_routes.dart';
 import 'package:get/get.dart';
 
+import '../views/auth/pages/forgot_pass_view.dart';
 import '../views/auth/pages/login_view.dart';
 import '../views/auth/pages/register_view.dart';
 import '../views/auth/pages/splash_view.dart';
@@ -12,6 +13,7 @@ class AppPages {
     GetPage(name: AppRoutes.splash, page: ()=> const SplashView()),
     GetPage(name: AppRoutes.login, page: ()=> const LoginView()),
     GetPage(name: AppRoutes.register, page: ()=> const RegisterView()),
+  GetPage(name: AppRoutes.forgotPassword, page: ()=> const ForgotPasswordView()),
  //      binding: BindingsBuilder(() {
  //        Get.put(SplashController());
  //      }),
