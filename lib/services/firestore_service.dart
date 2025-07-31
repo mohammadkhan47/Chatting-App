@@ -41,4 +41,14 @@ Future<void> deleteUser(String userid) async{
     throw Exception('failed to delete user: ${e.toString()}');
   }
 }
+ Stream<UserModel?> getUserStream(String userid){
+  return _firstore.collection('users').doc(userid).snapshots().map((doc) =>doc.exists ? UserModel.fromMap(doc.data()!): null);
+ }
+ Future<void> updateUser(UserModel user) async {
+  try{
+    await _firstore.collection('users').doc(user.id).update(user.toMap());
+  }catch(e){
+    throw Exception('failed to update');
+  }
+ }
 }

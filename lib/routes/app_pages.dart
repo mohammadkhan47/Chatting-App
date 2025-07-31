@@ -1,8 +1,10 @@
 import 'package:chattingapp/routes/app_routes.dart';
 import 'package:get/get.dart';
 
+import '../controllers/profile_controller.dart';
 import '../views/auth/pages/forgot_pass_view.dart';
 import '../views/auth/pages/login_view.dart';
+import '../views/auth/pages/profile_view.dart';
 import '../views/auth/pages/register_view.dart';
 import '../views/auth/pages/splash_view.dart';
 
@@ -13,7 +15,7 @@ class AppPages {
     GetPage(name: AppRoutes.splash, page: ()=> const SplashView()),
     GetPage(name: AppRoutes.login, page: ()=> const LoginView()),
     GetPage(name: AppRoutes.register, page: ()=> const RegisterView()),
-  GetPage(name: AppRoutes.forgotPassword, page: ()=> const ForgotPasswordView()),
+    GetPage(name: AppRoutes.forgotPassword, page: ()=> const ForgotPasswordView()),
  //      binding: BindingsBuilder(() {
  //        Get.put(SplashController());
  //      }),
@@ -48,11 +50,11 @@ class AppPages {
  //  Get.put(MainViewController());
  //  }),
  // )
- //    GetPage(name: AppRoutes.profile, page: ()=> const ProfileView(),
- //  binding: BindingsBuilder((){
- //  Get.put(ProfileViewController());
- //  }),
- // ),
+    GetPage(name: AppRoutes.profile, page: ()=> const ProfileView(),
+  binding: BindingsBuilder((){
+  Get.put(ProfileController());
+  }),
+ ),
  //    GetPage(name: AppRoutes.chat,page: ()=> const ChatView(),
  //      binding: BindingsBuilder((){
  //        Get.put(ChatViewController());

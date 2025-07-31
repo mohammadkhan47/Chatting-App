@@ -40,7 +40,9 @@ class _SplashViewState extends State<SplashView>  with SingleTickerProviderState
       final authController = Get.put(AuthController(), permanent: true);
       await Future.delayed(Duration(milliseconds: 800));
       if(authController.isAuthenticated) {
-        Get.offAllNamed(AppRoutes.login);
+        // Get.offAllNamed(AppRoutes.main);
+        // Get.offAllNamed(AppRoutes.login);
+        Get.offAllNamed(AppRoutes.profile);
       }else{
         Get.offAllNamed(AppRoutes.login);
     }

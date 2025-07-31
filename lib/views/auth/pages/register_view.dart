@@ -21,6 +21,10 @@ class _RegisterViewState extends State<RegisterView> {
   final AuthController _authController = Get.find<AuthController>();
   bool _obscurepass = true;
   bool _obscureconfirmpass = true;
+  FocusNode usernamefocus =FocusNode();
+  FocusNode emailfocus = FocusNode();
+  FocusNode passfocus = FocusNode();
+  FocusNode confirmfocus = FocusNode();
 
   @override
   void dispose() {
@@ -67,11 +71,15 @@ class _RegisterViewState extends State<RegisterView> {
                 TextFormField(
                     controller: _displayNameController,
                     keyboardType: TextInputType.name,
+                    focusNode: usernamefocus,
                     decoration: InputDecoration(
                       labelText: "Username",
                       prefixIcon: Icon(Icons.person_rounded),
                       hintText: 'Enter your username',
                     ),
+                    onFieldSubmitted: (_) {
+                      FocusScope.of(context).requestFocus(emailfocus);
+                    },
                     validator: (value) {
                       if (value?.isEmpty ?? true) {
                         return 'please enter your username';
@@ -86,11 +94,15 @@ class _RegisterViewState extends State<RegisterView> {
                 TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
+                    focusNode: emailfocus,
                     decoration: InputDecoration(
                       labelText: "Email",
                       prefixIcon: Icon(Icons.email_outlined),
                       hintText: 'Enter your email',
                     ),
+                    onFieldSubmitted: (_) {
+                      FocusScope.of(context).requestFocus(passfocus);
+                    },
                     validator: (value) {
                       if (value?.isEmpty ?? true) {
                         return 'please enter your email';
@@ -104,6 +116,7 @@ class _RegisterViewState extends State<RegisterView> {
                 SizedBox(height: 30,),
                 TextFormField(
                     controller: _passController,
+                    focusNode: passfocus,
                     obscureText: _obscurepass,
                     decoration: InputDecoration(
                         labelText: "Password",
@@ -118,6 +131,9 @@ class _RegisterViewState extends State<RegisterView> {
                                 _obscurepass ? Icons.visibility_outlined : Icons
                                     .visibility_off))
                     ),
+                    onFieldSubmitted: (_) {
+                      FocusScope.of(context).requestFocus(confirmfocus);
+                    },
                     validator: (value) {
                       if (value?.isEmpty ?? true) {
                         return 'please enter your password';
@@ -132,6 +148,8 @@ class _RegisterViewState extends State<RegisterView> {
                 TextFormField(
                     controller: _confirmpassController,
                     obscureText: _obscureconfirmpass,
+                    focusNode: confirmfocus,
+                    textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
                         labelText: "Confirm Password",
                         prefixIcon: Icon(Icons.lock_outline),
@@ -145,6 +163,15 @@ class _RegisterViewState extends State<RegisterView> {
                                 _obscureconfirmpass ? Icons.visibility_outlined : Icons
                                     .visibility_off))
                     ),
+                    onFieldSubmitted: (_) {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        _authController.registerWithEmailAndPaswword(
+                          _emailController.text.trim(),
+                          _passController.text.trim(),
+                          _displayNameController.text.trim(),
+                        );
+                      }
+                    },
                     validator: (value) {
                       if(value?.isEmpty?? true){
                         return 'please confirm your password';

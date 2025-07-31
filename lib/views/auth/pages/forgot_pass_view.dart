@@ -25,7 +25,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   children: [
                     IconButton(onPressed: controller.goBackToLogin,
                         icon: Icon(Icons.arrow_back_ios)),
-                    SizedBox(width: 8,),
+                    SizedBox(width: 4),
                     Text("Forgot Password",
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
