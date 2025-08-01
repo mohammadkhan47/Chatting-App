@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../controllers/profile_controller.dart';
 import '../views/auth/pages/forgot_pass_view.dart';
+import '../views/auth/pages/home_view.dart';
 import '../views/auth/pages/login_view.dart';
 import '../views/auth/pages/profile_view.dart';
 import '../views/auth/pages/register_view.dart';
@@ -16,6 +17,7 @@ class AppPages {
     GetPage(name: AppRoutes.login, page: ()=> const LoginView()),
     GetPage(name: AppRoutes.register, page: ()=> const RegisterView()),
     GetPage(name: AppRoutes.forgotPassword, page: ()=> const ForgotPasswordView()),
+  GetPage(name: AppRoutes.home, page: ()=> const HomeView()),
  //      binding: BindingsBuilder(() {
  //        Get.put(SplashController());
  //      }),

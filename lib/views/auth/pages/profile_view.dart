@@ -1,7 +1,6 @@
 import 'package:chattingapp/controllers/profile_controller.dart';
 import 'package:chattingapp/theme/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 class ProfileView extends GetView<ProfileController>{
@@ -56,6 +55,44 @@ class ProfileView extends GetView<ProfileController>{
                         },
                       ),
                     ): _buildDefaultAvatar(user),
+                  ),
+                  SizedBox(height: 16),
+                  Text(user.email,
+                    style: Theme.of(context!).textTheme.headlineSmall?.copyWith(color: AppTheme.textSecondaryColor),
+                  ),
+                  SizedBox(height: 4),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 4,horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: user.isOnline?AppTheme.successColor.withOpacity(0.1)
+                          :AppTheme.textSecondaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 8,
+                          width: 8,
+                          decoration: BoxDecoration(
+                            color: user.isOnline? AppTheme.successColor:
+                                AppTheme.textSecondaryColor,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        SizedBox(width: 6,),
+                        Text(user.isOnline? 'online':'offline',
+                          style: Theme.of(Get.context!).textTheme.bodySmall?.copyWith(
+                              color: user.isOnline?AppTheme.successColor
+                                  :AppTheme.textSecondaryColor,
+                              fontWeight: FontWeight.w600),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(controller.getJoinedData(),style: Theme.of(Get.context!).textTheme.bodySmall?.copyWith(
+                    color: AppTheme.textSecondaryColor
+                  ),
                   ),
                 ],
               )
