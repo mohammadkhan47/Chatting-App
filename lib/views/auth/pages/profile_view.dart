@@ -91,7 +91,7 @@ class ProfileView extends GetView<ProfileController>{
                   ),
                   SizedBox(height: 8),
                   Text(controller.getJoinedData(),style: Theme.of(Get.context!).textTheme.bodySmall?.copyWith(
-                    color: AppTheme.textSecondaryColor
+                    color: AppTheme.textSecondaryColor,
                   ),
                   ),
                 ],
